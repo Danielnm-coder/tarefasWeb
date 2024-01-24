@@ -1,0 +1,61 @@
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <h4>Sistema de controle de tarefas:</h4>
+      <p>Cadastro de tarefas.</p>
+
+
+      <form>
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <label>Nome da tarefa:</label>
+            <input type="text" class="form-control" placeholder="Digite aqui" />
+          </div>
+          <div class="col-md-3">
+            <label>Data e hora:</label>
+            <input type="datetime-local" class="form-control" />
+          </div>
+          <div class="col-md-3">
+            <label>Prioridade:</label>
+            <select class="form-select">
+              <option value="">Escolha uma opção</option>
+              <option value="1">Prioridade baixa</option>
+              <option value="2">Prioridade média</option>
+              <option value="3">Prioridade alta</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <label>Descrição da tarefa:</label>
+            <textarea class="form-control"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label>Categoria da tarefa:</label>
+            <select class="form-select">
+              <option value="">Escolha uma opção</option>
+              <option *ngFor="let item of categorias" value="{{item.id}}">
+                {{item.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="row mb-2">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-outline-success">
+              Realizar Cadastro
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
