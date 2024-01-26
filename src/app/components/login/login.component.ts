@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { config } from '../../config/config';
 
@@ -16,17 +16,30 @@ import { config } from '../../config/config';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
 
-  //variável
+  //variáveis
   mensagem: string = '';
+  exibirPagina: boolean = false;
 
 
   //método construtor
   constructor(
     private httpClient: HttpClient
   ) {    
+  }
+
+
+  //método executado quando o componente é aberto
+  ngOnInit(): void {
+    //verificar se existe um usuário já autenticado.
+    if(localStorage.getItem('usuario') != null){
+      location.href = '/app/consulta-tarefas'
+    }
+    else {
+      this.exibirPagina = true;
+    }
   }
 
 

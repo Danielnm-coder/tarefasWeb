@@ -1,52 +1,68 @@
 <div class="container mt-3">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <h4>Listagem de tarefas cadastradas:</h4>
-            <p>Ultimas tarefas cadastradas.</p>
-          </div>
-          <div class="col-md-6 text-end">
-            <button class="btn btn-outline-success btn-sm mt-3">
-              Cadastrar tarefa
-            </button>
-          </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Sistema de controle de tarefas:</h4>
+          <p>Listagem de tarefas cadastradas.</p>
         </div>
- 
-        <div class="table-responsive">
-          <table class="table table-sm table-hover table-striped">
-            <thead>
-              <tr>
-                <th>Nome da tarefa</th>
-                <th>Data e hora</th>
-                <th>Descrição</th>
-                <th>Prioridade</th>
-                <th [width]="150">Operações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of tarefas">
-                <td>{{ item.nome }}</td>
-                <td>{{ item.dataHora }}</td>
-                <td>{{ item.descricao }}</td>
-                <td>{{ item.prioridade }}</td>
-                <td>
-                  <button class="btn btn-sm btn-outline-primary me-2">
-                    Editar
-                  </button>
-                  <button class="btn btn-sm btn-outline-danger">Excluir</button>
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="5">Quantidade de tarefas: {{ tarefas.length }}</td>
-              </tr>
-            </tfoot>
-          </table>
+        <div class="col-md-6 text-end">            
         </div>
+      </div>
+
+
+      <div *ngIf="mensagem" class="mb-3 mt-2">
+        <h5>{{mensagem}}</h5>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Nome da tarefa</th>
+              <th>Data e hora</th>
+              <th>Descrição</th>
+              <th>Prioridade</th>
+              <th [width]="150">Operações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of tarefas">
+              <td>{{ item.nome | uppercase }}</td>
+              <td>{{ item.dataHora | date : 'dd/MM/yyyy HH:mm' }}</td>
+              <td>{{ item.descricao }}</td>
+              <td>
+                <span *ngIf="item.prioridade == 1" class="text-success">
+                  BAIXA
+                </span>
+                <span *ngIf="item.prioridade == 2" class="text-warning">
+                  MÉDIA
+                </span>
+                <span *ngIf="item.prioridade == 3" class="text-danger">
+                  ALTA
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-sm btn-outline-primary me-2">
+                  Editar
+                </button>
+                <button class="btn btn-sm btn-outline-danger"
+                  (click)="onDelete(item.id)">
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">Quantidade de tarefas: {{ tarefas.length }}</td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
     </div>
   </div>
+</div>
+
 
 

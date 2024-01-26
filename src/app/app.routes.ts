@@ -3,19 +3,23 @@ import { CadastroTarefasComponent } from './components/cadastro-tarefas/cadastro
 import { ConsultaTarefasComponent } from './components/consultar-tarefas/consultar-tarefas.component';
 import { EdicaoTarefasComponent } from './components/edicao-tarefas/edicao-tarefas.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
         path: 'app/cadastro-tarefas',
-        component: CadastroTarefasComponent
+        component: CadastroTarefasComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'app/consulta-tarefas',
-        component: ConsultaTarefasComponent
+        component: ConsultaTarefasComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'app/edicao-tarefas',
-        component: EdicaoTarefasComponent
+        component: EdicaoTarefasComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'app/login',
